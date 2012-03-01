@@ -29,7 +29,8 @@ THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
 
-#import "JSON.h"
+#import "extThree20JSON/SBJson.h"
+#import "extThree20JSON/NSString+SBJSON.h"
 #import "CEPubnubRequest.h"
 #import "CEPubnubDelegate.h"
 
@@ -63,11 +64,11 @@ THE SOFTWARE.
 -(void)
 	publish:  (NSString*) channel
 	message:  (id)        message
-	delegate: (id)        delegate;
+	delegate: (id<CEPubnubDelegate>)        delegate;
 
 -(void)
 	subscribe: (NSString*) channel
-	delegate:  (id)        delegate;
+	delegate:  (id<CEPubnubDelegate>)        delegate;
 
 -(void) subscribe: (NSDictionary*) args;
 -(BOOL) subscribed: (NSString*) channel;
@@ -75,10 +76,10 @@ THE SOFTWARE.
 -(void)
 	history:  (NSString*) channel
 	limit:    (int)       limit
-	delegate: (id)        delegate;
+	delegate: (id<CEPubnubDelegate>)        delegate;
 
 -(void) unsubscribe: (NSString*) channel;
--(void) time: (id) delegate;
+-(void) time: (id<CEPubnubDelegate>) delegate;
 -(void) shutdown;
 @end
 

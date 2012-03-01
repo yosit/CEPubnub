@@ -35,13 +35,11 @@
 
 @synthesize publish_key, subscribe_key, secret_key, scheme, host, subscriptions, parser, writer;
 
--(CEPubnub *)
-publishKey:   (NSString*) pub_key
-subscribeKey: (NSString*) sub_key
-secretKey:    (NSString*) sec_key
-sslOn:        (BOOL)      ssl_on
-origin:       (NSString*) origin
-{
+-(CEPubnub *) publishKey:(NSString*) pub_key
+            subscribeKey:(NSString*) sub_key
+               secretKey:(NSString*) sec_key
+                   sslOn:(BOOL)      ssl_on
+                  origin:(NSString*) origin {
     
     self          = [super init];
     publish_key   = pub_key;
@@ -81,14 +79,9 @@ origin:       (NSString*) origin
 }
 
 // * /publish/pub-key/sub-key/signature/channel/callback/"msg"
--(void)
-publish:  (NSString*) channel
-message:  (id)        message
-delegate: (id)        delegate
-{
-	
-	
-	NSString* message_string;
+-(void) publish:(NSString*)channel message:(id)message delegate:(id<CEPubnubDelegate>)delegate {
+
+    NSString* message_string;
 	if ([message isKindOfClass:[NSString class]]) {
 		message_string = [NSString stringWithFormat:@"\"%@\"", message];
 	} else {
@@ -166,18 +159,9 @@ delegate: (id)        delegate
 	[subscriptions setObject:req forKey:channel];
 	[req release];
 	[callback release];
-	//NSLog(@"req retainCount: %d", [req retainCount]);
-	//NSLog(@"callback retainCount: %d", [callback retainCount]);
-	
-	
 }
 
--(void)
-subscribe: (NSString*) channel
-delegate:  (id)        delegate
-{
-		
-	
+-(void) subscribe: (NSString*) channel delegate:(id<CEPubnubDelegate>)delegate {
     if ([self subscribed: channel]) {
         NSLog( @"Already Subscribed: %@", channel );
         return;
@@ -209,12 +193,13 @@ delegate:  (id)        delegate
 }
 
 // * /history/sub-key/channel/callback/limit
--(void)
-history:  (NSString*) channel
-limit:    (int)       limit
-delegate: (id)        delegate
-{
-    if (limit > 100) limit = 100;
+-(void)history:(NSString*) channel
+         limit:(int)limit
+      delegate:(id<CEPubnubDelegate>)delegate {
+    
+    if (limit > 100) {
+        limit = 100;
+    }
 	
     [[[CEPubnubRequest alloc] autorelease]
 	 scheme: scheme
@@ -233,7 +218,7 @@ delegate: (id)        delegate
 	 ];
 }
 
--(void) time: (id) delegate {
+-(void) time: (id<CEPubnubDelegate>) delegate {
     [[[CEPubnubRequest alloc] autorelease]
 	 scheme:   scheme
 	 host:     host
