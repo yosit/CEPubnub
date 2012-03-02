@@ -29,8 +29,7 @@ THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
 
-#import "extThree20JSON/SBJson.h"
-#import "extThree20JSON/NSString+SBJSON.h"
+#import "JSON.h"
 #import "CEPubnubRequest.h"
 #import "CEPubnubDelegate.h"
 
