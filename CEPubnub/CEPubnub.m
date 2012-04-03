@@ -167,8 +167,6 @@
         return;
     }
 	
-    
-	
     [self
 	 performSelector: @selector(subscribe:)
 	 withObject: [NSDictionary
