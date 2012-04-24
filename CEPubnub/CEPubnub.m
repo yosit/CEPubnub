@@ -35,22 +35,23 @@
 
 @synthesize publish_key, subscribe_key, secret_key, scheme, host, subscriptions, parser, writer;
 
--(CEPubnub *) publishKey:(NSString*) pub_key
+-(CEPubnub *) initWithPublishKey:(NSString*) pub_key
             subscribeKey:(NSString*) sub_key
                secretKey:(NSString*) sec_key
                    sslOn:(BOOL)      ssl_on
                   origin:(NSString*) origin {
     
     self          = [super init];
-    publish_key   = pub_key;
-    subscribe_key = sub_key;
-    secret_key    = sec_key;
-    scheme        = ssl_on ? @"https" : @"http";
-    host          = origin;
-    subscriptions = [[NSMutableDictionary alloc] init];
-    parser        = [SBJsonParser new];
-    writer        = [SBJsonWriter new];
-	
+    if (self) {
+        publish_key   = pub_key;
+        subscribe_key = sub_key;
+        secret_key    = sec_key;
+        scheme        = ssl_on ? @"https" : @"http";
+        host          = origin;
+        subscriptions = [[NSMutableDictionary alloc] init];
+        parser        = [SBJsonParser new];
+        writer        = [SBJsonWriter new];
+	}
     return self;
 }
 

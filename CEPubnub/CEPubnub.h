@@ -54,7 +54,7 @@ THE SOFTWARE.
 @property (nonatomic, retain) SBJsonWriter *writer;
 
 -(CEPubnub*)
-	publishKey:   (NSString*) pub_key
+	initWithPublishKey:   (NSString*) pub_key
 	subscribeKey: (NSString*) sub_key
 	secretKey:    (NSString*) sec_key
 	sslOn:        (BOOL)      ssl_on
