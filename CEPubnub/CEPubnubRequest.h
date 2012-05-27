@@ -28,12 +28,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-#import "extThree20JSON/SBJson.h"
-#import "extThree20JSON/NSString+SBJSON.h"
-
 #import "CEPubnubDelegate.h"
+#import "JSON.h"
+
 
 @class CEPubnub;
 
